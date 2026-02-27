@@ -1,7 +1,14 @@
-CREATE TABLE PERSONS (
+CREATE TABLE CUSTOMERS (
+ id SERIAL PRIMARY KEY,
  name VARCHAR(50), surname VARCHAR(50), age INTEGER,
- phone_number VARCHAR(50), city_of_living VARCHAR(50)
-
+ phone_number VARCHAR(50)
 );
 
-ALTER TABLE persons ADD CONSTRAINT persons_pk PRIMARY KEY (name, surname, age);
+CREATE TABLE ORDERS (
+ id SERIAL PRIMARY KEY,
+ date DATE,
+ customer_id INTEGER,
+ product_name VARCHAR(50),
+ amount INTEGER,
+ FOREIGN KEY (customer_id) REFERENCES CUSTOMERS(id)
+);
